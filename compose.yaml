@@ -36,7 +36,6 @@ services:
         environment:
             - NGINX_HOST=example.lapor
             - NGINX_PORT=90
-
     php-fpm:
         image: cyberduck/php-fpm-laravel:8.1
         networks:
@@ -45,7 +44,6 @@ services:
             - ./:/var/www
         environment:
             - XDEBUG=TRUE
-
 networks:
     sail:
         driver: bridge
