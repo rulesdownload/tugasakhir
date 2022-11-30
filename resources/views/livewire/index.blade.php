@@ -12,7 +12,7 @@
                                     <div wire:ignore id="map" class="p-2 bd-highlight" style=" width: 460px; height: 300px; float: left;"></div>
                                     <div class="flex p-2 bd-highlight">
                                                 @foreach($photos as $photo)
-                                                                <img width="62" height="22" src="{{ asset('storage/additional_photos/'.$photo->filename)}}" alt="post images" class="img-fluid mr-2">
+                                                                <img width="62" height="22" src="{{ asset('storage/app/public/additional_photos/'.$photo->filename)}}" alt="post images" class="img-fluid mr-2">
                                                 @endforeach
                                       </div>    
                             </div>

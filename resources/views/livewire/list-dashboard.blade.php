@@ -17,7 +17,7 @@
                                     <label for="">{{$problemo->problem}} :</label>
                                         @foreach($fotos as $foto)
                                             @if($problemo->marker_id == $foto->id)
-                                            <img width="20" height="25" src="{{ asset('storage/marker/'.$foto->filename)}}" alt="{{$foto->filename}}" class="float-right">
+                                            <img width="20" height="25" src="{{ asset('storage/app/public/marker/'.$foto->filename)}}" alt="{{$foto->filename}}" class="float-right">
                                             @endif
                                         @endforeach
                                 </div>                                  
@@ -133,7 +133,7 @@
                 var markerJSON = JSON.parse(@this.markers);
                 var postJSON = JSON.parse(@this.problems);
                 //text variabel untuk mengarahkan path storage sebuah gambar dari marker
-                var text = 'storage/marker/';
+                var text = '/storage/app/public/marker/';
 
                 for(var i = 0; i < latJSON.length;i++){
                     var lats = latJSON[i];
