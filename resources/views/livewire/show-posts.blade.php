@@ -13,15 +13,16 @@
   </thead>
   <tbody>
     
-        @foreach($reports as $id => $report)
-    <tr class="cursor-pointer"  wire:click.prevent="$emitTo('index', 'open', {{ $id }})">
-      <div wire:key="{{ $id }}">
+        @foreach($reports as $ids => $report)
+    <tr class="cursor-pointer"  wire:click.prevent="$emitTo('index', 'open', {{ $report->id - 1}})">
+      <div wire:key="{{ $report->id }}">
       <th scope="row">{{ $loop->iteration }}</th>
       <td>{{ $report->des_mas }}</td>
       <td>{{ $report->des_lok }}</td>
-      <td>{{ $report->status->parameter}}}</td>
+      <td>{{ $report->status->parameter}}</td>
       <td>{{ $report->problem->problem }}</td>
       <td>{{ $report->type->tipe}}</td>
+
       </div>
     </tr>
         @endforeach

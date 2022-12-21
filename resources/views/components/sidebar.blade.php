@@ -27,10 +27,10 @@
             @if(Auth::check() && Auth::user()->level == "admin")
                 <li class="c-sidebar-nav-title">Pengaturan</li>
                 <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="/admin/action">
-                     Action</a></li>
+                     Pengaturan Admin</a></li>
             @endif
 
-            <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="typography.html">
+            {{-- <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="typography.html">
                 <svg class="c-sidebar-nav-icon">
                     <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-pencil"></use>
                 </svg> Typography</a></li>
@@ -58,7 +58,7 @@
                 <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="base/tabs.html"> Tabs</a></li>
                 <li class="c-sidebar-nav-item"><a class="c-sidebar-nav-link" href="base/tooltips.html"> Tooltips</a></li>
             </ul>
-            </li>
+            </li> --}}
         </ul>
         
 </div>

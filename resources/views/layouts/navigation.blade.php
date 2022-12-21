@@ -72,7 +72,7 @@
                                 <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
 
                                 @if (Route::has('register'))
-                                    <a href="{{ route('adminlogin') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                                    <a href="{{ route('adminlogin') }}" class="ml-4 text-sm text-gray-700 underline">Login Admin</a>
                                 @endif
                             @endauth
             </div>

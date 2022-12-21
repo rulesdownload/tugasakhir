@@ -128,7 +128,7 @@
 @section('scripts')
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{config('services.google.key')}}&libraries=places&callback=initialize"
   type="text/javascript"></script>
- <script src="{{ asset('js/mapInput.js') }}" defer></script>
+ <script src="{{ asset('public/js/mapInput.js') }}" defer></script>
 
 <script >
 // supaya menu dalam searchbox tidak membelakangi modal

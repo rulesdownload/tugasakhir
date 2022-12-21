@@ -138,7 +138,8 @@ class LivewireServiceProvider extends ServiceProvider
             ->name('livewire.upload-file')
             ->middleware(config('livewire.middleware_group', ''));
 
-        RouteFacade::get('/livewire/preview-file/{filename}', [FilePreviewHandler::class, 'handle'])
+        /*RouteFacade::get('/livewire/preview-file/{filename}', [FilePreviewHandler::class, 'handle'])*/        
+        RouteFacade::get('/storage/app/livewire-tmp/{filename}', [FilePreviewHandler::class, 'handle'])
             ->name('livewire.preview-file')
             ->middleware(config('livewire.middleware_group', ''));
 

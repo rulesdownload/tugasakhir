@@ -37,7 +37,7 @@
                                 <div class="col-sm-6 flex p-2 bd-highlight">
                                     <p class="h6">Gambar</p>
                 @foreach($photos as $photo)
-                <img width="62" height="22" src="{{ asset('storage/additional_photos/'.$photo->filename)}}" alt="post images" onclick="openModal();currentSlide({{$loop->iteration}})"class="img-fluid mr-2" wire:ignore>
+                <img width="62" height="22" src="{{ asset('storage/app/public/additional_photos/'.$photo->filename)}}" alt="post images" onclick="openModal();currentSlide({{$loop->iteration}})"class="img-fluid mr-2" wire:ignore>
                 @endforeach
                                 </div>
                             </div> 
