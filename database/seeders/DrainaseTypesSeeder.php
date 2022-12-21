@@ -19,10 +19,22 @@ class DrainaseTypesSeeder extends Seeder
              'tipe' => 'empty'
          ]);
      drainaseTypes::create([    
-             'tipe' => 'drainase primer'
+             'tipe' => 'natural drainage'
          ]);
      drainaseTypes::create([
-             'tipe' => 'drainase pinggir jalan'
+             'tipe' => 'artificial drainage'
+         ]);
+     drainaseTypes::create([
+             'tipe' => 'Sub surface drainage'
+         ]);
+     drainaseTypes::create([
+             'tipe' => 'Drainase Tersier'
+         ]);
+        drainaseTypes::create([
+             'tipe' => 'Drainase Sekunder'
+         ]);
+        drainaseTypes::create([
+             'tipe' => 'Drainase Primer'
          ]);
     }
 }
