@@ -204,7 +204,7 @@
                 @foreach ($photos as $photo)
                 <div class="mySlides">
                     <div class="numbertext">{{$loop->iteration}}</div>
-                    <img src="{{ asset('storage/additional_photos/'.$photo->filename)}}" style="width:100%">    
+                    <img src="{{ asset('storage/app/public/additional_photos/'.$photo->filename)}}" style="width:100%">    
                 </div>
                 @endforeach
 

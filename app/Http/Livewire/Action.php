@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use App\Models\City;
 use App\Models\drainaseProblems;
-use App\Models\DrainaseTypes;
+use App\Models\drainaseTypes;
 use App\Models\Marker;
 use Illuminate\Support\Arr;
 

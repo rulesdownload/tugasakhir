@@ -1,6 +1,7 @@
 server {
     listen       ${NGINX_PORT};
-    server_name  ${NGINX_HOST};
+    listen       [::]:${NGINX_PORT};
+    server_name  ${NGINX_HOST} www.lapordrainasemdo.com lapordrainasemdo.com;
 
     index index.php;
 
@@ -24,6 +25,9 @@ server {
 
    location ~ \.(gif|jpg|png|js)$ {
        root /var/www;
+   }
+   location ~ \.(css){
+       root /var/www/public;
    }
 
     location ~ /\.ht {

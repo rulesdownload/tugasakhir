@@ -99,7 +99,7 @@
 </script>
 @endsection
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key={{config('services.google.key')}}&libraries=places&callback=initmap"></script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{config('services.google.maps')}}&libraries=places&callback=initmap"></script>
 <script type="text/javascript">
 
         setTimeout(function initmap(){

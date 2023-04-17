@@ -3,13 +3,13 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Post_raw;
-use App\Models\DrainaseProblems;
-use App\Models\DrainaseTypes;
-use App\Models\additionalphotos;
+use App\Models\post_raw;
+use App\Models\drainaseProblems;
+use App\Models\drainaseTypes;
+use App\Models\AdditionalPhotos;
 use Livewire\WithFileUploads;
 use App\Models\Status;
-use App\Models\Comment;
+use App\Models\comment;
 use Illuminate\Http\Request; 
 
 use \Illuminate\Session\SessionManager;
@@ -36,7 +36,7 @@ class KelolaPost extends Component
 
     public function mount($id)
     {
-       $reports = Post_raw::find($id);
+       $reports = post_raw::find($id);
        $this->posts = $reports; 
        //saat proses update dibutuhkan sebuah nilai. nilainya yaitu property post Id.
        $this->postId = $reports->id;
@@ -85,7 +85,7 @@ class KelolaPost extends Component
         $this->validate();
 
         if($this->postId) {
-            $post = Post_raw::find($this->postId);
+            $post = post_raw::find($this->postId);
             $post->update([
                 'problem_id' => $this->problem,
                 'tipe_id' => $this->type,

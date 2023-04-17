@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Post_raw;
+use App\Models\post_raw;
 use Illuminate\Http\Request;  
 
 class ShowPosts extends Component
@@ -13,7 +13,7 @@ class ShowPosts extends Component
     public function render()
     {
         return view('livewire.show-posts',[
-            'reports' => Post_raw::with(['user'])->where('user_id', auth()->user()->id)->get()
+            'reports' => post_raw::with(['user'])->where('user_id', auth()->user()->id)->get()
             
         ]);
     }

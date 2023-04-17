@@ -135,8 +135,31 @@ function updateMarkerAddress(str) {
     geocodePosition(marker.getPosition());
   });
 
+//tambahan melakukan pencarian koordinat dengan  HTML5 Geolocation (gps)
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
 
-}
+          marker.setPosition(pos);
+          map.setCenter(pos);
+          
+/*           const gpslat = marker.getCenter(pos).toJSON(); */
+    			console.log(pos);
+        },
+        () => {
+          handleLocationError(true, infoWindow, map.getCenter());
+        }
+      );
+    } else {
+      // Browser doesn't support Geolocation
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
+
+};
 google.maps.event.addDomListener(window, 'load', initialize);
 google.maps.event.addDomListener(window, "load", initialize);
 
