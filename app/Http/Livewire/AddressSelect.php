@@ -48,7 +48,7 @@ class AddressSelect extends Component
         'des_mas'=>'required',
         'lat' => 'required',
         'lng' =>'required',
-        'photos.*' => 'image|max:1024|required',
+        'photos.*' => 'image|max:8127|required',
         ];
     }
 
@@ -63,15 +63,12 @@ class AddressSelect extends Component
     
     public function getLatitudeForInput($value) 
     {
-
-    if(!is_null($value))
-        $this->lat = $value;
-        
+        $this->lat = $value;        
     }
 
     public function getLongitudeForInput($value)
     {
-        if(!is_null($value) )
+        
             $this->lng = $value;
     }
 

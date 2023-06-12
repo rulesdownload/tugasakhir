@@ -7,7 +7,16 @@ function initialize() {
   };
   var mapCanvas = document.getElementById('map');
   var mapOptions = {
-    center: new google.maps.LatLng(1.474830, 124.842079),
+    //center: new google.maps.LatLng(1.474830, 124.842079),
+    center: navigator.geolocation.getCurrentPosition(
+        (position= GeolocationPosition) => {
+          var pos = {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          };
+          map.setCenter(pos);
+          },
+        ),
     zoom: 14,
     scrollwheel: false,
     panControl: false,

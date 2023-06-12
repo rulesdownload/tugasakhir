@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token-app" content="{{ csrf_token() }}">
-
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 
         <title> Selamat Datang Di Layanan Aduan Saluran Air Bermasalah Kota Manado</title>
 

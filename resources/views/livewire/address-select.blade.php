@@ -77,15 +77,12 @@
     @error('photos.*') <span class="error">{{ $message }}</span> @enderror
 
     <div class="form-group" >
-        <label for="latitudehide">latitude</label>
-        <input id="latitudehide" name="latitudehide" wire:model="lat" wire:model="lat"  >
-
-        <label for="longitudehide">longitude</label>
-        <input id="longitudehide" name="longitudehide" wire:model="lng" wire:model="lng" >
+        <input type="hidden" id="latitudehide" name="latitudehide" wire:model="lat" wire:model="lat"  >
+        <input type="hidden" id="longitudehide" name="longitudehide" wire:model="lng" wire:model="lng" >
     </div>
 
      <label for="status_id"></label>
-      <input type="text" name="status_id" class="">
+      <input type="hidden" name="status_id" class="">
 
     <button type="submit" class="btn btn-sm btn-primary" wire:loading.attr="disabled" >Submit</button>
 
@@ -108,8 +105,8 @@
         <input id="pac-input" type="text" placeholder="cari lokasi">
         <div wire:ignore id="map" class="mb-2" style=" width: 500px; height: 400px; float: left;"></div>
 
-        <input wire:ignore id="infolat" value="as" type="text" name="infolat" class="hidden">
-        <input wire:ignore id="infolng" value="rs" type="text" name="infolng" class="hidden">
+        <input id="infolat" value="1.474830" type="text" name="infolat" class="hidden">
+        <input id="infolng" value="124.842079" type="text" name="infolng" class="hidden">
         <div id="infoPanel" class="hidden">
             <b>Marker status:</b>
             <div id="markerStatus"><i>Click and drag the marker.</i></div>
@@ -145,12 +142,12 @@ $("#pac-input").keypress(function() {
       var lat = document.getElementById("infolat").value;
       var lng = document.getElementById("infolng").value;
 
-    // ambil value lewat DOM, tidak cocok buat livewire
-      // x.setAttribute("value",lat );
-
     // agar Javascript dapat berkomunikasi dng Livewire
       Livewire.emit('getLatitudeForInput',lat);
       Livewire.emit('getLongitudeForInput',lng);
+
+    // ambil value lewat DOM, tidak cocok buat livewire
+      // x.setAttribute("value",lat );
 
     //memasukan value pada text input, tidak cocok dgn livewire
       // document.getElementById("infolat").value ;
