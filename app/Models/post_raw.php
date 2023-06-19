@@ -15,14 +15,14 @@ class post_raw extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-       public function city()
+       public function City()
     {
         return $this->belongsTo(City::class, 'city_id');
     }
 
       public function district()
     {
-        return $this->belongsTo(District::class, 'district_id');
+        return $this->belongsTo(district::class, 'district_id');
     }
 
        public function problem()
@@ -35,6 +35,6 @@ class post_raw extends Model
     }
        public function status()
     {
-        return $this->belongsTo(status::class, 'status_id');
+        return $this->belongsTo(Status::class, 'status_id');
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Post_raw;
+use App\Models\post_raw;
 use App\Models\City;
-use App\Models\District;
+use App\Models\district;
 use App\Models\AdditionalPhotos;
 use Livewire\Component;
 use Livewire\WithFileUploads;

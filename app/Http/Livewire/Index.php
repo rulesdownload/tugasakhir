@@ -3,11 +3,11 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Post_raw;
+use App\Models\post_raw;
 use App\Models\City;
-use App\Models\District;
+use App\Models\district;
 use App\Models\AdditionalPhotos;
-use App\Models\Comment;
+use App\Models\comment;
 use Livewire\WithFileUploads;
 class Index extends Component
 {
@@ -29,7 +29,7 @@ class Index extends Component
 
     public function loadPosts($uid)
     {
-        $reports = Post_raw::all()->get($uid);
+        $reports = post_raw::all()->get($uid);
         $this->posts = $reports;
         $this->postId = $reports->id;
 
@@ -81,7 +81,7 @@ class Index extends Component
     {
  
         return view('livewire.index', [
-            'koment'=> Comment::all()
+            'koment'=> comment::all()
         ]);
 
     }

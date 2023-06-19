@@ -55,7 +55,7 @@
 
                                     <select id="my-select" class="image-picker" wire:model="optionmarkerbaru" data-container="#createproblem" >
                                         @foreach($Markers as $marker)
-                                        <option value="{{$marker->id}}" data-img-src="{{ asset('storage/marker/'.$marker->filename)}}">{{$marker->id}}</option>
+                                        <option value="{{$marker->id}}" data-img-src="{{ asset('storage/app/public/marker/'.$marker->filename)}}">{{$marker->id}}</option>
                                         @endforeach
                                     </select>
                                 @error('optionmarkerbaru') <span class="error">{{ $message }}</span> @enderror
@@ -70,7 +70,7 @@
                                     <input wire:ignore type="text" wire:model.defer="probleminput.{{$problem->id}}" class="form-control" placeholder="{{$problem->problem}}">
                                         <select wire:ignore class="image-pickerupd" wire:model.defer="optionmarkerupdate.{{$problem->id}}" data-container="#createproblem" >
                                         @foreach($Markers as $marker)
-                                            <option value="{{$marker->id}}" data-img-src="{{ asset('storage/marker/'.$marker->filename)}}">{{$marker->id}}</option>
+                                            <option value="{{$marker->id}}" data-img-src="{{ asset('storage/app/public/marker/'.$marker->filename)}}">{{$marker->id}}</option>
                                         @endforeach
                                         </select>  
                                     <button wire:click="hapusproblem({{$problem->id}})" class="btn btn-danger float-right">Danger</button>

@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace app\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Post_raw;
+use App\Models\post_raw;
 use App\Models\City;
 use App\Models\drainaseProblems;
 use App\Models\Marker;
-use App\Models\District;
+use app\Models\district;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 
@@ -28,8 +28,8 @@ class ListDashboard extends Component
     public function mount()
     {
         //flatmap iterasi
-        $this->posts = Post_raw::all()->toJSON();
-        $this->postsflat = Post_raw::all()->flatmap(function($item, $key){
+        $this->posts = post_raw::all()->toJSON();
+        $this->postsflat = post_raw::all()->flatmap(function($item, $key){
 
             $this->problemlists = drainaseProblems::all()->where('id','=', $item['problem_id']);
             return $this->problemlists;
@@ -40,8 +40,8 @@ class ListDashboard extends Component
             return $this->markerfind;
         });
 
-        $this->latarray = Post_raw::all('lat','problem_id')->toJSON();
-        $this->lngarray = Post_raw::all('lng','problem_id')->toJSON();
+        $this->latarray = post_raw::all('lat','problem_id')->toJSON();
+        $this->lngarray = post_raw::all('lng','problem_id')->toJSON();
 
         $this->dispatchBrowserEvent('problem-loaded',[
             'problems' => $this->problems = $this->posts
@@ -80,7 +80,7 @@ class ListDashboard extends Component
     public function render()
     {
 
-        $lists = Post_raw::orderBy($this->sortby, $this->direction);
+        $lists = post_raw::orderBy($this->sortby, $this->direction);
         
         return view('livewire.list-dashboard', [
             'lists' => $lists->get(),

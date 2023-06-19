@@ -98,7 +98,7 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Tentukan titik lokasi</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -128,7 +128,7 @@
 @section('scripts')
 <script async defer src="https://maps.googleapis.com/maps/api/js?key={{config('services.google.key')}}&libraries=places&callback=initialize"
   type="text/javascript"></script>
- <script src="{{ asset('js/mapInput.js') }}" defer></script>
+ <script src="{{ asset('public/js/mapInput.js') }}" defer></script>
 
 <script >
 // supaya menu dalam searchbox tidak membelakangi modal
