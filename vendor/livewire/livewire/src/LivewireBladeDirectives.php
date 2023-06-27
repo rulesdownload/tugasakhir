@@ -53,8 +53,8 @@ EOT;
         if (LivewireManager::$currentCompilingViewPath !== null) {
             // $cachedKey = '[hash of Blade view path]-[current @livewire directive count]'
             $cachedKey = "'l" . crc32(LivewireManager::$currentCompilingViewPath) . "-" . LivewireManager::$currentCompilingChildCounter . "'";
-   
-	 // We'll increment count, so each cache key inside a compiled view is unique.
+
+            // We'll increment count, so each cache key inside a compiled view is unique.
             LivewireManager::$currentCompilingChildCounter++;
         } 
 

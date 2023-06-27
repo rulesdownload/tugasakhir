@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use App\Events\ReportSent;
 use Livewire\Component;
 use App\Models\post_raw;
 use App\Models\City;
+use App\Models\User;
 use App\Models\district;
 use App\Models\AdditionalPhotos;
 use App\Models\comment;
@@ -12,7 +14,7 @@ use Livewire\WithFileUploads;
 class Index extends Component
 {
 
-    protected $listeners = ['open'=>'loadPosts', 'CommentCreated'];
+    protected $listeners = ['open'=>'loadPosts', 'CommentCreated','PushReport',];
     public $cities = [];
     public $districts= [];
     public $posts = [];
@@ -44,7 +46,7 @@ class Index extends Component
 
         $this->emit('toggleGalaxyFormModal');
         $this->emit('confirmDestroy', $uid);
-    }
+        }
 
     protected function rules()
     {
@@ -57,14 +59,13 @@ class Index extends Component
     public function CommentCreated()
     {
         $this->commentprompt = "Komentar berhasil terkirim";
-
     }
+    
 
     public function confirmDestroy()
     {
-        
-    }
 
+    }
     public function addComment()
     {
         Comment::create([

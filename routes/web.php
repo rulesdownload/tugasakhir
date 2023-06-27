@@ -50,5 +50,5 @@ Route::prefix('admin')->group(function () {
    Route::get('/kelola',[AdminController::class, 'ShowPost'])->middleware(['admin:admin'])->name('posts');
    Route::get('/kelola/{id}',KelolaPost::class)->middleware(['admin:admin'])->name('kelola');
    Route::get('/action',[AdminController::class, 'Action'])->middleware(['admin:admin'])->name('action');
-
+   Route::get('/notifi',[AdminController::class, 'Notifadmin'])->middleware(['admin:admin'])->name('notifi');
 });

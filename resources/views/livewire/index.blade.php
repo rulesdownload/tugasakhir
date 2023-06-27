@@ -88,7 +88,6 @@
                                         
                     </div>
 
-
                   </div>
                         <div class="modal-footer">
                     <button wire:click="confirmDestroy()" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -169,7 +168,6 @@
   });
 
 }
-        
 </script>
 
 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrFLi96zuuekA3nlI5TllQ--4ktUMvoF8&libraries=places&callback=initialize"

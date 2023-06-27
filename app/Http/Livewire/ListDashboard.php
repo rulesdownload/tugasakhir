@@ -10,6 +10,7 @@ use App\Models\Marker;
 use app\Models\district;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
+use App\Events\ReportSent;
 
 class ListDashboard extends Component
 {
@@ -23,7 +24,7 @@ class ListDashboard extends Component
     public $markerlist = [];
     public $sortby = 'id';
     public $direction = 'asc';
-    protected $listener = ['DetailPost'];
+    protected $listener = ['DetailPost', 'render','ReportNew'=>'ReportNew','echo:reportchannel,ReportSent'=>'ReportReceived'];
 
     public function mount()
     {
@@ -60,8 +61,19 @@ class ListDashboard extends Component
         $this->dispatchBrowserEvent('longitude-loaded',[
             'longitudes' => $this->longitudes = $this->lngarray
         ]);
+
     }
-    
+    public function ReportReceived()
+    {
+       $this->posts=post_raw::latest()->get();
+    }
+
+   public function broadcastedReport($event)
+   {
+     dd($event);
+   }
+
+
     public function sorting($field, $direction)
     {
 
@@ -76,12 +88,10 @@ class ListDashboard extends Component
         $this->emit('toggleGalaxyFormModal');
 
     }
-
+    
     public function render()
     {
-
         $lists = post_raw::orderBy($this->sortby, $this->direction);
-        
         return view('livewire.list-dashboard', [
             'lists' => $lists->get(),
             'problemos' => drainaseProblems::all()->sortby('marker_id'),

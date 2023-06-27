@@ -6,47 +6,45 @@
     </button>
             @error('lat') <span class="error">{{ $message }}</span> @enderror
     <form wire:submit.prevent="store">
-
-        <div class="form-group " >
+         <div class="form-group " >
 
           <div class="relative mt-1 mb-4" >
             <label for="city"> Kecamatan </label>
               <div class="mt-1 mb-4 border rounded-md">
               <select 
-              name="city" 
-              wire:model="city" 
-              class="mt-1 mb-4 w-full outline-primary" >
-                <option value=''>Pilih Kecamatan</option>
-                @foreach($cities as $city)
-                  <option value={{ $city ->id}}>{{ $city->kecamatan }}</option> 
-                @endforeach
+              name="cities" 
+              wire:model.lazy="cities" 
+              class=" w-full outline-primary form-control"disabled >
+                 value='{{$cities}}'>Kecamatan</option>
+           
+                  <option class="disabled" id="dropkec" value={{$cities}}>Kecamatan</option> 
+                
               </select>
                 @error('city') <span class="error">{{ $message }}</span> @enderror
                   </div>
           </div>
 
-          <div class="mt-1 mb-4">            
+          <div class="mt-1 mb-4 disabled">            
             <label for="district"> Kelurahan </label>
-              <div class="mt-1 mb-4 border rounded-md">
+              <div class="border rounded-md ">
               <select 
-              name="district" 
-              wire:model="district"
-              class="mt-1 mb-4 w-full outline-primary" >
-                <option value=''>Pilih Kelurahan</option>
-                @foreach($districts as $district)
-                  <option value={{ $district ->id}}>{{ $district->kelurahan }}</option> 
-                @endforeach
+              name="districts" 
+              wire:model.lazy="districts"
+              class=" w-full outline-primary form-control" disabled>
+                <option value='{{$districts}}'>Kelurahan</option>
+                
+                  <option id="dropkel" value={{ $districts}}></option> 
+                
               </select>
                   @error('district') <span class="error">{{ $message }}</span> @enderror
              </div>
           </div>
 
         </div>
-
     <div class="form-group">  
      <label for="des_lok"> Masukan deskripsi Lokasi </label>
         <div class="mt-1 mb-4 pl-1 pt-1 pb-1 " >   
-        <textarea class="resize-none border rounded-md focus:outline-none w-full" placeholder="Dijalan maesa, depan rumah makan kios bakmi.." name="des_lok"  wire:model="des_lok" wire:ignore></textarea>
+        <textarea class="resize-none border rounded-md focus:outline-none w-full" placeholder="Dijalan maesa, depan rumah makan kios bakmi.." name="des_lok"  wire:model.defer="des_lok" wire:ignore></textarea>
         @error('des_lok') <span class="error">{{ $message }}</span> @enderror
         </div>
      </div>
@@ -54,7 +52,7 @@
      <div class="form-group">  
      <label for="des_mas">Deskripsi Masalah</label>
         <div class="mt-1 mb-4 pl-1 pt-1 pb-1 " >   
-        <textarea class="resize-none border rounded-md focus:outline-none w-full" placeholder="Sudah seminggu air diselokan tidak mengalir jika hujan maka air tumpah dijalan. " wire:model="des_mas"></textarea>
+        <textarea class="resize-none border rounded-md focus:outline-none w-full" placeholder="Sudah seminggu air diselokan tidak mengalir jika hujan maka air tumpah dijalan. " wire:model.defer="des_mas"></textarea>
         @error('des_mas') <span class="error">{{ $message }}</span> @enderror
         </div>
   
@@ -62,29 +60,18 @@
 
         <label for="photo_input"> Masukan Gambar </label>
         <input type="file" wire:model="photos" multiple>
-    <div class="flex">
-    @if ($photos)
-        Photo Preview:
-        @foreach($photos as $photo)
-        <i wire:click.prevent="removeImg({{$loop->index}})">X</i>
-        <img width="62" height="22" class="responsive p-2" src="{{ $photo->temporaryUrl() }}">
-
-        @endforeach
-    </div>
-    @endif
-
 
     @error('photos.*') <span class="error">{{ $message }}</span> @enderror
 
     <div class="form-group" >
-        <input type="hidden" id="latitudehide" name="latitudehide" wire:model="lat" wire:model="lat"  >
-        <input type="hidden" id="longitudehide" name="longitudehide" wire:model="lng" wire:model="lng" >
+        <input type="" id="latitudehide" name="latitudehide" wire:model="lat" wire:model="lat"  >
+        <input type="" id="longitudehide" name="longitudehide" wire:model="lng" wire:model="lng" >
     </div>
 
      <label for="status_id"></label>
       <input type="hidden" name="status_id" class="">
 
-    <button type="submit" class="btn btn-sm btn-primary" wire:loading.attr="disabled" >Submit</button>
+    <button wire:click="$emitSelf('ListDashboard','render')" type="submit" class="btn btn-sm btn-primary" wire:loading.attr="disabled" >Submit</button>
 
     </form>
     {{$prompt}}
@@ -93,7 +80,7 @@
 <!-- Modal Buka map -->
     <div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content"style="width: 512px;right: 7px;">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Tentukan titik lokasi</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -102,11 +89,13 @@
           </div>
           <div class="modal-body">
             
-        <input id="pac-input" type="text" placeholder="cari lokasi">
-        <div wire:ignore id="map" class="mb-2" style=" width: 500px; height: 400px; float: left;"></div>
+        <input id="pac-input" type="text" placeholder="cari lokasi"class="mb-1.5">
+        <div wire:ignore id="map" class="" style="width: 500px;height: 400px;float: left;position: relative;overflow: hidden;left: -23;right: 13px;left: -10;"></div>
 
-        <input id="infolat" value="1.474830" type="text" name="infolat" class="hidden">
-        <input id="infolng" value="124.842079" type="text" name="infolng" class="hidden">
+        <input id="infolat"  type="text" name="infolat" class="hidden">
+        <input id="infolng"  type="text" name="infolng" class="hidden">
+        <input id="infokec" name="infokecamatan" class="hidden">
+	<input id="infokel" name="infokelurahan" class="hidden">
         <div id="infoPanel" class="hidden">
             <b>Marker status:</b>
             <div id="markerStatus"><i>Click and drag the marker.</i></div>
@@ -141,10 +130,14 @@ $("#pac-input").keypress(function() {
     function myFunction() {
       var lat = document.getElementById("infolat").value;
       var lng = document.getElementById("infolng").value;
-
+      var kec = document.getElementById("infokec").value;
+      var kel = document.getElementById("infokel").value;
+      console.log(kec);
     // agar Javascript dapat berkomunikasi dng Livewire
       Livewire.emit('getLatitudeForInput',lat);
       Livewire.emit('getLongitudeForInput',lng);
+      Livewire.emit('getKecamatan',kec);
+      Livewire.emit('getKelurahan',kel);
 
     // ambil value lewat DOM, tidak cocok buat livewire
       // x.setAttribute("value",lat );

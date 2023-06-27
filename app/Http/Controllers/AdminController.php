@@ -27,4 +27,8 @@ class AdminController extends Controller
 
         return view('admin.action');
     }
+       public function NotifAdmin() {
+
+        return view('admin.Notifadmin');
+    }
 }

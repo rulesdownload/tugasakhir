@@ -12,6 +12,7 @@ class LivewireManager
     protected $listeners = [];
     protected $componentAliases = [];
     protected $queryParamsForTesting = [];
+    protected $missingComponentResolvers = [];
 
     protected $shouldDisableBackButtonCache = false;
 
@@ -27,7 +28,7 @@ class LivewireManager
     ];
 
     public static $isLivewireRequestTestingOverride = false;
-    
+
     public static $currentCompilingViewPath;
     public static $currentCompilingChildCounter;
 
@@ -36,6 +37,10 @@ class LivewireManager
         if (is_null($viewClass)) {
             $viewClass = $alias;
             $alias = $viewClass::getName();
+        }
+
+        if (is_object($viewClass)) {
+            $viewClass = get_class($viewClass);
         }
 
         $this->componentAliases[$alias] = $viewClass;
@@ -53,6 +58,11 @@ class LivewireManager
         return $this->componentAliases;
     }
 
+    public function resolveMissingComponent($resolver)
+    {
+        $this->missingComponentResolvers[] = $resolver;
+    }
+
     public function getClass($alias)
     {
         $finder = app(LivewireComponentsFinder::class);
@@ -65,6 +75,19 @@ class LivewireManager
             // If not, we'll look in the auto-discovery manifest.
             $this->componentAliases[$alias] ?? $finder->find($alias)
         );
+
+        if (! $class) {
+            // If we haven't found the component through the normal channels
+            // we'll look through user-land missing-component JIT hooks...
+            foreach ($this->missingComponentResolvers as $resolve) {
+                if ($resolved = $resolve($alias)) {
+                    $this->component($alias, $resolved);
+
+                    $class = $this->componentAliases[$alias];
+                    break;
+                }
+            }
+        }
 
         $class = $class ?: (
             // If none of the above worked, our last-ditch effort will be
@@ -235,20 +258,20 @@ HTML;
         $versionedFileName = $manifest['/livewire.js'];
 
         // Default to dynamic `livewire.js` (served by a Laravel route).
-        $fullAssetPath = "{$assetsUrl}/livewire{$versionedFileName}";
+        $fullAssetPath = "{$assetsUrl}/public/vendor/livewire{$versionedFileName}";
         $assetWarning = null;
 
         $nonce = isset($options['nonce']) ? "nonce=\"{$options['nonce']}\"" : '';
 
         // Use static assets if they have been published
-        if (file_exists(public_path('vendor/livewire/manifest.json'))) {
+        if (file_exists(public_path('/public/vendor/livewire/manifest.json'))) {
             $publishedManifest = json_decode(file_get_contents(public_path('vendor/livewire/manifest.json')), true);
             $versionedFileName = $publishedManifest['/livewire.js'];
 
-            $fullAssetPath = ($this->isRunningServerless() ? config('app.asset_url') : $assetsUrl).'/public/vendor/livewire'.$versionedFileName;
+            $fullAssetPath = ($this->isRunningServerless() ? config('app.asset_url') : $assetsUrl).'public/vendor/livewire/'.$versionedFileName;
 
             if ($manifest !== $publishedManifest) {
-                $assetWarning = <<<'HTML'
+                $assetWarning = <<<HTML
 <script {$nonce}>
     console.warn("Livewire: The published Livewire assets are out of date\n See: https://laravel-livewire.com/docs/installation/")
 </script>
@@ -342,7 +365,7 @@ HTML;
 
         if (! $route) return false;
 
-        return $route->named('livewire.message');
+        return $route->named('livewire.message') || $route->named('livewire.message-localized');
     }
 
     public function isProbablyLivewireRequest()
@@ -462,7 +485,7 @@ HTML;
         static::$isLivewireRequestTestingOverride = false;
         static::$currentCompilingChildCounter = null;
         static::$currentCompilingViewPath = null;
-        
+
         $this->shouldDisableBackButtonCache = false;
 
         $this->dispatch('flush-state');

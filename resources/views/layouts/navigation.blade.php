@@ -1,14 +1,14 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-100"> 
     <!-- Primary Navigation Menu -->
     <div class="mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16 ">
             <div class="flex">
             @if (Route::has('login') || Route::has('adminlogin'))
              @auth
-                <x-dropdown >
+		<x-dropdown>
                 <x-slot name="trigger">
-                 <div  class =" mt-3" x-data="{ open: false }" @click.away="open = false"@close.stop="open = false">
-                        <div class="flex-shrink-0 flex items-center">
+                 <div  class ="mt-3" x-data="{ open: false }" @click.away="open = false"@close.stop="open = false">
+                        <div class="">
                             <button @click = "open ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                                 <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                                     <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
@@ -66,7 +66,6 @@
                             </x-slot>
                         </x-dropdown>
                     </div>
-
            
                             @else
                                 <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
@@ -76,10 +75,22 @@
                                 @endif
                             @endauth
             </div>
+
                     @endif
 
+       @if(Auth::check() && Auth::user()->level == "admin")	
+	<div class="mr-24 pt-3"  >
+                <button type="button" class="btn btn-primary" href="/notifi">
+		<a href="/admin/notifi"> 
+                  Profile <span class="badge badge-light">9</span>
+                 <span class="sr-only">unread messages</span>
+		</a>
+                </button>
+         </div>
+       @endif
 
          </div>
+
 
          @if (Route::has('login') || Route::has('adminlogin'))
          @auth
@@ -101,7 +112,6 @@
                         </x-responsive-nav-link>
 
                     </div>
-
                         
                     <!-- Responsive Settings Options -->
                     <div class="pt-4 pb-1 border-t border-gray-200">

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Storage;
 use League\MimeTypeDetection\FinfoMimeTypeDetector;
 
+#[\AllowDynamicProperties]
 class TemporaryUploadedFile extends UploadedFile
 {
     protected $storage;
@@ -18,7 +19,9 @@ class TemporaryUploadedFile extends UploadedFile
         $this->disk = $disk;
         $this->storage = Storage::disk($this->disk);
         $this->path = FileUploadConfiguration::path($path, false);
+
         $tmpFile = tmpfile();
+
         parent::__construct(stream_get_meta_data($tmpFile)['uri'], $this->path);
     }
 
@@ -73,12 +76,13 @@ class TemporaryUploadedFile extends UploadedFile
 
     public function temporaryUrl()
     {
+
         if ((FileUploadConfiguration::isUsingS3() or FileUploadConfiguration::isUsingGCS()) && ! app()->runningUnitTests()) {
             return $this->storage->temporaryUrl(
                 $this->path,
                 now()->addDay(),
                 ['ResponseContentDisposition' => 'filename="' . $this->getClientOriginalName() . '"']
-            ); 
+            );
         }
 
         if (method_exists($this->storage->getAdapter(), 'getTemporaryUrl') || ! $this->isPreviewable()) {
@@ -89,7 +93,6 @@ class TemporaryUploadedFile extends UploadedFile
         return URL::temporarySignedRoute(
             'livewire.preview-file', now()->addMinutes(30), ['filename' => $this->getFilename()]
         );
-        dd( ['filename' => $this->getFilename()]);
     }
 
     public function isPreviewable()
@@ -123,7 +126,7 @@ class TemporaryUploadedFile extends UploadedFile
         return $this->storage->delete($this->path);
     }
 
-    public function storeAs($path, $name, $options = [])
+    public function storeAs($path, $name = null, $options = [])
     {
         $options = $this->parseOptions($options);
 
