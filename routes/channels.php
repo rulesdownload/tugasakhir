@@ -17,6 +17,6 @@ Broadcast::channel('App.Models.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
 
-Broadcast::channel('notifchannel', function ($post_raw) {
-    return Post_raw::findOrNew($post_raw);
+Broadcast::channel('notifchannel', function () {
+    return true;
 });

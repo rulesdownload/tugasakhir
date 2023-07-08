@@ -10,6 +10,7 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Illuminate\Http\Request;  
 use App\Events\notifevent;
+use Illuminate\Support\Str;
 
 class AddressSelect extends Component
 {
@@ -20,8 +21,10 @@ class AddressSelect extends Component
     public $des_lok, $des_mas, $lat, $lng, $latitude, $longitude,$kec,$kel;
     public $prompt;
     public $modelId;
-    public  $photos = [];
+    public $photos = [];
+    public $randomnumberprog =[];
     use WithFileUploads;
+    public $randomnumberdone =[];
     protected $listeners = [
         "refreshParent", 
         "getLatitudeForInput",
@@ -90,6 +93,17 @@ class AddressSelect extends Component
             $this->lng = $value;
     }
 
+   public function getRandomNumb($prog)
+   {
+     $today = date('Ymd');
+     $postnumberprog = post_raw::where('prog_id', 'like', $today.'%')->pluck('prog_id');
+     do {
+     $this->randomnumprog = $today . rand(10000,99999);
+     } while ($postnumberprog->contains($this->randomnumprog));
+     $prog->prog_id = $this->randomnumprog;
+     dd($prog);
+   }
+
     public function render()
     {
         //if(!empty($this->kec)) {
@@ -115,7 +129,12 @@ class AddressSelect extends Component
     public function store()
     {
         $this->validate();
-
+     $today = date('Ymd');
+     $postnumberprog = post_raw::where('prog_id', 'like', $today.'%')->pluck('prog_id');
+     do {
+     $this->randomnumberprog = $today . rand(1000,9999);
+     } while ($postnumberprog->contains($this->randomnumberprog));
+     $this->randomnumberdone = $today . rand(1000,9999);
 
         if ($this->modelId) {
             Post_raw::find($this->modelId);
@@ -133,10 +152,12 @@ class AddressSelect extends Component
             'status_id'=>1,
             'problem_id'=>1,
             'tipe_id'=>1,
+            'prog_id'=>$this->randomnumberprog,
+            'done_id'=>$this->randomnumberdone
         ]);
             $postInstanceId = $postInstance->id;
 	  
-	    event(new notifevent);
+	    event(new notifevent($postInstanceId));
         }
 
         foreach ($this->photos as $photo) {

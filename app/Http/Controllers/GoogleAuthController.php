@@ -24,6 +24,7 @@ class GoogleAuthController extends Controller
                         'email' => $user->email,
                         'google_id' => $user->id,
                         'level'=> 2,
+			'avatar'=>$user->avatar,
                         'password'=> encrypt(config('services.default.emergency')),
                 ]);
                 Auth::login($newUser);

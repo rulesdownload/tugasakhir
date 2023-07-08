@@ -72,7 +72,7 @@
                             @foreach($lists as $id => $list)
                         <tr class="cursor-pointer"  wire:click.prevent="$emitTo('index', 'open', {{ $id }})">
                           <div wire:key="{{ $id }}">
-                          <th scope="row">{{ $loop->iteration }}</th>
+                          <th scope="row">{{ $list->id }}</th>
                           <td>{{ $list->des_mas }}</td>
                           <td>{{ $list->city->kecamatan }}</td>
                           <td>{{ $list->district->kelurahan }}</td>
@@ -82,6 +82,7 @@
                           </div>
                         </tr>
                             @endforeach
+                         {{$lists->links()}}
                       </tbody>
             </table>
 

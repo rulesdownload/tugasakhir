@@ -6,9 +6,11 @@ use Livewire\Component;
 use App\Models\post_raw;
 use App\Events\notifevent;
 use App\Models\User;
+use Livewire\WithPagination;
+
 class Notifadmin extends Component
 {
-protected $listeners = ["echo:notifchannel,notifevent" => 'notifyNewOrder'];
+protected $listeners = ["echo:notifchannel,.notifevent" => 'notifyNewOrder'];
 public $data=[];
 public $reportnewid=[];
 public $showNewReportNotification = false;
@@ -21,7 +23,6 @@ public $showNewReportNotification = false;
 
     public function notifyNewOrder($event)
     {
-	dd($event);
        $this->showNewReportNotification = true;
 
     }
@@ -33,7 +34,7 @@ public $showNewReportNotification = false;
     public function render()
     {	
         return view('livewire.notifadmin', [
-	'reports' => Post_raw::latest()->get(),
+	'reports' => Post_raw::latest()->paginate(5),
        ]);
     }
 }

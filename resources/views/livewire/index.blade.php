@@ -1,15 +1,22 @@
 <div>
 
-
-      <div class="modal-dialog modal-xl" style="">
+<div class="row">
+      <div class="modal-dialog modal-xl m-1 col-md-6" style="width: 647px">
                 <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+		@foreach ($cities as $city)
+                        <h5 class="modal-title font-bold" id="exampleModalLabel">Kec. {{ $city->kecamatan }}- </h5>
+                        @foreach ($districts as $district)
+                        <h5 class="modal-title font-bold" id="exampleModalLabel"> Kel. {{ $district->kelurahan }}</h5>
+			@endforeach
+                 @endforeach
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+		       
                       </div>
+			
                       <div class="row g-5" style="height: auto; padding: 2px;">
-                            <div  class="d-flex align-items-start flex-column bd-highlight top-50 start-0 translate-middle-y ml-3" style="height: 400px;">
-                                    <div wire:ignore id="map" class="p-2 bd-highlight" style=" width: 460px; height: 300px; float: left;"></div>
+                            <div  class="align-items-start bd-highlight d-flex flex-column start-0 top-50" style="height: 400px;">
+                                    <div wire:ignore id="map" class="p-2 bd-highlight mx-auto" style=" width: 460px; height: 300px; float: left;"></div>
                                     <div class="flex p-2 bd-highlight">
                                                 @foreach($photos as $photo)
                                                                 <img width="62" height="22" src="{{ asset('storage/app/public/additional_photos/'.$photo->filename)}}" alt="post images" class="img-fluid mr-2">
@@ -17,18 +24,11 @@
                                       </div>    
                             </div>
                         <div class="modal-dialog col-md-10 col-lg-9 order-md-last ">
-                                  @foreach ($cities as $city)
-                                        <span class="text-xl font-bold">Kecamatan {{ $city->kecamatan }},</span>
-                                        @endforeach
-
-                                        @foreach ($districts as $district)
-                                        <span class="text-xl font-bold">  Kelurahan {{ $district->kelurahan }}</span>
-                                        @endforeach   
-
+                                
                                  @foreach ($posts as $post)
 
                                         @if ($loop->first)
-                                  <div class="modal-dialog col-md-10 col-lg-9 order-md-last ">
+                                  <div class="modal-dialog col-md-10 col-lg-9 order-md-last m-1 ">
                                         <div class="row">
                                                     <div class="col-sm-6 ">
                                                     <p class="h5">deskripsi masalah</p>
@@ -39,7 +39,7 @@
                                         </div>
                                   </div>
 
-                                  <div class="modal-dialog col-md-10 col-lg-9 order-md-last ">
+                                  <div class="modal-dialog col-md-10 col-lg-9 order-md-last m-1">
                                         <div class="row">
                                             <div class="col-sm-6 ">
                                                 <p class="h5">deskripsi lokasi</p>
@@ -50,7 +50,7 @@
                                         </div>
                                     </div>  
 
-                                  <div class="modal-dialog col-md-10 col-lg-9 order-md-last ">
+                                  <div class="modal-dialog col-md-10 col-lg-9 order-md-last m-1">
                                     <div class="row">
                                             <div class="col-sm-6 ">
                                                 <p class="h5">status</p>
@@ -61,7 +61,7 @@
                                         </div>
                                    </div>   
 
-                                    <div class="modal-dialog col-md-10 col-lg-9 order-md-last ">
+                                    <div class="modal-dialog col-md-10 col-lg-9 order-md-last m-1">
                                     <div class="row">
                                             <div class="col-sm-6 ">
                                                 <p class="h5">jenis drainase</p>
@@ -72,7 +72,7 @@
                                         </div>
                                    </div>   
 
-                                    <div class="modal-dialog col-md-10 col-lg-9 order-md-last ">
+                                    <div class="modal-dialog col-md-10 col-lg-9 order-md-last m-1">
                                     <div class="row">
                                             <div class="col-sm-6 ">
                                                 <p class="h5">klasifikasi masalah</p>
@@ -95,8 +95,8 @@
             </div>
 
 </div>
-                <form wire:submit.prevent = "addComment">
-                <div class="card m-3 w-75 mx-auto">
+                <form wire:submit.prevent = "addComment"class="col">
+                <div class="card m-3 w-75 mx-auto p-1">
                     @if (Route::has('login') || Route::has('adminlogin'))
                         @auth
                                 <!-- komentar bila user telah login -->
@@ -125,9 +125,9 @@
                                 @foreach($koment as $komentar)
                                     @if($komentar->post_raw_id == $postId)
                                     <div class=" card rounded border shadow p-3 m-3"> 
-
                                     <div class="flex justify-start my-2">
-                                        <p class="font-bold text-lg"> {{$komentar->user->name}}</p>
+				    <img src="{{$komentar->user->avatar}}" alt="avatar" class="rounded-circle m-1" style="width:40px; height: 40px">
+                                        <p class="font-bold mt-2.5 pl-1 text-lg"> {{$komentar->user->name}}</p>
                                         <p class="mx-3 py-2 text-xs text-grey-500 font-semibold"> {{\Carbon\Carbon::parse($komentar->created_at)->diffForHumans()}} </p>
                                     </div>
                                     <p> {{$komentar->komentar}}</p>
@@ -136,6 +136,7 @@
                                 @endforeach
                 </div>
                 </form>
+</div>
 <script type="text/javascript">
 
 

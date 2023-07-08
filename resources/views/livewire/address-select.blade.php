@@ -59,13 +59,13 @@
     </div>
 
         <label for="photo_input"> Masukan Gambar </label>
-        <input type="file" wire:model="photos" multiple>
-
+        <input type="file" wire:model.lazy="photos" multiple>
+        <div wire:loading wire:target="photos">Uploading...</div>
     @error('photos.*') <span class="error">{{ $message }}</span> @enderror
 
     <div class="form-group" >
-        <input type="" id="latitudehide" name="latitudehide" wire:model="lat" wire:model="lat"  >
-        <input type="" id="longitudehide" name="longitudehide" wire:model="lng" wire:model="lng" >
+        <input type="" id="latitudehide" name="latitudehide" wire:model.lazy="lat" wire:model.lazy="lat"  >
+        <input type="" id="longitudehide" name="longitudehide" wire:model.lazy="lng" wire:model.lazy="lng" >
     </div>
 
      <label for="status_id"></label>

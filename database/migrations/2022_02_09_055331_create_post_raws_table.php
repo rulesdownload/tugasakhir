@@ -25,6 +25,10 @@ class CreatePostRawsTable extends Migration
             $table->foreignId("problem_id")->nullable();
             $table->foreignId("tipe_id")->nullable();
             $table->bigInteger('user_id');
+            $table->string("prog_id")->nullable();
+            $table->string("done_id")->nullable();
+            $table->text("progtxt",100)->nullable();
+            $table->text("donetxt",100)->nullable();
             $table->timestamps();
         });
     }

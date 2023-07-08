@@ -11,7 +11,7 @@ use app\Models\district;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Events\ReportSent;
-
+use Livewire\WithPagination;
 class ListDashboard extends Component
 {
     public $posts = [];
@@ -24,7 +24,7 @@ class ListDashboard extends Component
     public $markerlist = [];
     public $sortby = 'id';
     public $direction = 'asc';
-    protected $listener = ['DetailPost', 'render','ReportNew'=>'ReportNew','echo:reportchannel,ReportSent'=>'ReportReceived'];
+    protected $listener = ['DetailPost', 'render','ReportNew'=>'ReportNew'];
 
     public function mount()
     {
@@ -63,16 +63,6 @@ class ListDashboard extends Component
         ]);
 
     }
-    public function ReportReceived()
-    {
-       $this->posts=post_raw::latest()->get();
-    }
-
-   public function broadcastedReport($event)
-   {
-     dd($event);
-   }
-
 
     public function sorting($field, $direction)
     {
@@ -93,7 +83,7 @@ class ListDashboard extends Component
     {
         $lists = post_raw::orderBy($this->sortby, $this->direction);
         return view('livewire.list-dashboard', [
-            'lists' => $lists->get(),
+            'lists' => $lists->paginate(10),
             'problemos' => drainaseProblems::all()->sortby('marker_id'),
             'fotos' => Marker::all()
         ]);

@@ -20,8 +20,11 @@ class notifevent implements ShouldBroadcast
      *
      * @return void
      */
-	public $post_raw;
+	public $message;
 
+       public function __construct($message){
+	$this->message = $message;
+       }
     /**
      * Get the channels the event should broadcast on.
      *
@@ -29,7 +32,7 @@ class notifevent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return ['notifchannel'];
+        return new Channel('notifchannel');
     }
 
     public function broadcastAs(){

@@ -31,4 +31,8 @@ class AdminController extends Controller
 
         return view('admin.Notifadmin');
     }
+       public function ShowData() {
+
+        return view('admin.showdata');
+    }
 }

@@ -1,0 +1,85 @@
+{
+  "_from": "laravel-echo",
+  "_id": "laravel-echo@1.15.1",
+  "_inBundle": false,
+  "_integrity": "sha512-rW9XTXqs1v3sgcSFz7aE3/MPa2lfZjnsV/hrjyS/VYecQAx1lSP0hg3KumuR6ftkeneM093tVvTkRyKFumSyXg==",
+  "_location": "/laravel-echo",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "laravel-echo",
+    "name": "laravel-echo",
+    "escapedName": "laravel-echo",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/laravel-echo/-/laravel-echo-1.15.1.tgz",
+  "_shasum": "74d4e0c8b9649da4a31ebe882ed814e05b489618",
+  "_spec": "laravel-echo",
+  "_where": "/home/arthurmds08/var/www",
+  "author": {
+    "name": "Taylor Otwell"
+  },
+  "bugs": {
+    "url": "https://github.com/laravel/echo/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Laravel Echo library for beautiful Pusher and Socket.IO integration",
+  "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.17.2",
+    "@babel/plugin-proposal-export-namespace-from": "^7.16.7",
+    "@babel/plugin-proposal-function-sent": "^7.16.7",
+    "@babel/plugin-proposal-numeric-separator": "^7.16.7",
+    "@babel/plugin-proposal-throw-expressions": "^7.16.7",
+    "@babel/plugin-transform-object-assign": "^7.16.7",
+    "@babel/preset-env": "^7.16.11",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@types/jest": "^27.4.1",
+    "@types/node": "^18.11.9",
+    "@typescript-eslint/eslint-plugin": "^5.14.0",
+    "@typescript-eslint/parser": "^5.14.0",
+    "eslint": "^8.11.0",
+    "jest": "^27.5.1",
+    "rollup": "^2.70.1",
+    "rollup-plugin-typescript2": "^0.31.2",
+    "standard-version": "^9.3.2",
+    "ts-jest": "^27.1.3",
+    "tslib": "^2.3.1",
+    "typescript": "^4.6.2"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "homepage": "https://github.com/laravel/echo",
+  "keywords": [
+    "laravel",
+    "pusher",
+    "ably"
+  ],
+  "license": "MIT",
+  "main": "dist/echo.common.js",
+  "module": "dist/echo.js",
+  "name": "laravel-echo",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/laravel/echo.git"
+  },
+  "scripts": {
+    "build": "npm run compile && npm run declarations",
+    "compile": "rollup -c",
+    "declarations": "tsc --emitDeclarationOnly",
+    "lint": "eslint --ext .js,.ts ./src ./tests",
+    "prepublish": "npm run build",
+    "release": "npm run test && standard-version && git push --follow-tags && npm publish",
+    "test": "jest"
+  },
+  "types": "dist/echo.d.ts",
+  "version": "1.15.1"
+}

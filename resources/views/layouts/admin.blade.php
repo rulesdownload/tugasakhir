@@ -24,6 +24,14 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/image-picker/0.3.0/image-picker.min.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/image-picker/0.3.0/image-picker.min.css" rel="stylesheet"/>
 
+<script type="module">
+
+Echo.channel('notifchannel')
+        .listen('notifevent', (e) => {
+            alert('awas refresh');
+            console.log('awas refresh');
+        });
+</script>
         @livewireStyles
     </head>
 
