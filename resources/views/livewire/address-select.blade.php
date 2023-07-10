@@ -71,7 +71,7 @@
      <label for="status_id"></label>
       <input type="hidden" name="status_id" class="">
 
-    <button wire:click="$emitSelf('ListDashboard','render')" type="submit" class="btn btn-sm btn-primary" wire:loading.attr="disabled" >Submit</button>
+    <button type="submit" class="btn btn-sm btn-primary" wire:loading.class="bg-gray" >Submit</button>
 
     </form>
     {{$prompt}}

@@ -14,7 +14,7 @@ use Livewire\WithFileUploads;
 class Index extends Component
 {
 
-    protected $listeners = ['open'=>'loadPosts', 'CommentCreated','PushReport',];
+    protected $listeners = ['open'=>'loadPosts', 'CommentCreated','refreshParentComponent' => '$refresh'];
     public $cities = [];
     public $districts= [];
     public $posts = [];
@@ -23,7 +23,8 @@ class Index extends Component
     public $latitude;
     public $longitude;
     public $photos = [];
-
+    public $progresphotoshow = []; 
+    public $donephotoshow = [];
     //komentar
     public $created_at;
     public $comment_input;
@@ -34,18 +35,17 @@ class Index extends Component
         $reports = post_raw::all()->get($uid);
         $this->posts = $reports;
         $this->postId = $reports->id;
-
         $this->dispatchBrowserEvent('latitude-loaded', ['alat' => $this->latitude = $reports->lat]);
         $this->dispatchBrowserEvent('longitude-loaded', ['alng' => $this->longitude = $reports->lng]);
 
         $this->photos = AdditionalPhotos::where('post_raw_id', $reports->id)->get();
-
+        $this->donephotoshow = additionalphotos::where('post_raw_id', $reports->done_id)->get();
+        $this->progresphotoshow = additionalphotos::where('post_raw_id', $reports->prog_id)->get();    
         // binding Kecamatan dan Kelurahan berdasarkan post yang dipilih user
         $this->cities = City::where('id', $reports->city_id)->get();
         $this->districts = District::where('id', $reports->district_id)->get();
-
-        $this->emit('toggleGalaxyFormModal');
-        $this->emit('confirmDestroy', $uid);
+	$this->emit('toggleGalaxyFormModal');
+        $this->emit('confirmDestroy');
         }
 
     protected function rules()
@@ -61,11 +61,11 @@ class Index extends Component
         $this->commentprompt = "Komentar berhasil terkirim";
     }
     
-
     public function confirmDestroy()
     {
-
+	$this->emit('modalDestroy');
     }
+
     public function addComment()
     {
         Comment::create([

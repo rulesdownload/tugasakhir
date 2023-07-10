@@ -32,11 +32,12 @@
             @livewire('index')
         </div>
 </div>
-
 @section('scripts')
 <script type="text/javascript">
 
     window.livewire.on('toggleGalaxyFormModal', () => $('#detail-post-modal').modal('toggle'));
-
+        window.livewire.on('confirmDestroy', event => {
+                $('#detail-post-modal').modal('hide');
+        })
 </script>
 @endsection

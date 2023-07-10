@@ -31,9 +31,8 @@ class AddressSelect extends Component
         "getLongitudeForInput",
         "getModelId",
 	"getKecamatan",
-	"getKelurahan",
+	"getKelurahan", 'refreshParentComponent' => '$refresh'
     ];
-
 
         protected $messages = [
         'citys.required' => 'Kecamatan tidak boleh kosong.',
@@ -42,7 +41,7 @@ class AddressSelect extends Component
         'des_mas.required' => 'Deskripsi masalah tidak boleh kosong.',
         'lat.required' => 'Belum memilih titik lokasi silahkan tekan tombol Buka Map',
         'lng.required' => 'Belum memilih titik lokasi silahkan tekan tombol buka Map.',
-        'photo' => 'Masukan bukti foto',
+        'photo.required' => 'Masukan bukti foto',
 
     ];
     protected function rules() {
@@ -64,8 +63,9 @@ class AddressSelect extends Component
 
     public function refreshParent()
     {
-        $this->prompt ="Laporan anda berhasil dibuat, silahkan tunggu admin untuk mengkonfirmasi laporan anda";
-        return view('livewire.list-dashboard');
+       $this->prompt ="Laporan anda berhasil dibuat, silahkan tunggu admin untuk mengkonfirmasi laporan anda";
+       $this->emit('refreshParentComponent');
+       return redirect()->to('/dashboard');
     }
     
     public function getLatitudeForInput($value) 

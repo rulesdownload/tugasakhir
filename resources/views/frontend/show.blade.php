@@ -16,6 +16,7 @@
 
 						<div class="card-body form-group">
 							<form method="POST" action="">
+							@csrf
 							@livewire('show-posts')
 						</div>
 					</div>

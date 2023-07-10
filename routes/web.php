@@ -33,6 +33,7 @@ Route::get('/adminlogin', function () {
 Route::get('/laporan',[ReportController::class, 'render'])->middleware(['auth'])->name('laporan');
 Route::post('/laporan',[ReportController::class, 'render'])->middleware(['auth'])->name('laporan');
 Route::get('/show',[ReportController::class,'view'])->middleware(['auth'])->name('show');
+Route::post('/show',[ReportController::class,'view'])->middleware(['auth'])->name('show');
 
 Route::get('/dashboard',[HomeController::class,'render'])->name('dashboard');
 require __DIR__.'/auth.php';

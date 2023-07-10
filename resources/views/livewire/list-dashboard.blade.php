@@ -28,7 +28,7 @@
                 </div>
             </div>
 
-        <div>
+        <div class="table-responsive-md">
 
                 <table class="table">
                       <thead>
@@ -96,7 +96,9 @@
 <script type="text/javascript">
 
     window.livewire.on('toggleGalaxyFormModal', () => $('#detail-post-modal').modal('toggle'));
-
+	window.livewire.on('confirmDestroy', event => {
+		$('#detail-post-modal').modal('hide');
+	})
 </script>
 @endsection
 

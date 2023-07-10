@@ -20,7 +20,7 @@ class userSeeder extends Seeder
              'level' => 'admin',
              'email' => 'admin@admin.com',
              'google_id' =>101,
-	     'avatar' =>'https://images.app.goo.gl/j8CtKon2kEaz8gUM7',
+	     'avatar' =>'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR1XvTPCsBHENWNON35rXNL28Raq42XbkZynN1pdVBysrASNsXQ8tn5el68wGWIilnm5mE&usqp=CAU',
              'password' => bcrypt('admin'),
          ]);
     }

@@ -16,6 +16,12 @@ class ShowPosts extends Component
             'reports' => post_raw::with(['user'])->where('user_id', auth()->user()->id)->get()
             
         ]);
+	$this->emit('modalDestroy');
+    }
+
+    public function confirmDestroy()
+    {
+        $this->emit('modalDestroy');
     }
 
     public function DetailPost()

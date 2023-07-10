@@ -42,6 +42,7 @@
                         <x-dropdown align="right" width="48">
                             <x-slot name="trigger">
                                 <button class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+<img src="{{ Auth::user()->avatar }}" alt="avatar" class="md:-m-10 rounded-circle mr-2" style="width:40px; height: 40px">
                                     <div>{{ Auth::user()->name }}</div>
 
                                     <div class="ml-1">
@@ -81,8 +82,8 @@
        @if(Auth::check() && Auth::user()->level == "admin")	
 	<div class="mr-24 pt-3"  >
                 <button type="button" class="btn btn-primary" href="/notifi">
-		<a href="/admin/notifi"> 
-                  Profile <span class="badge badge-light">9</span>
+		<a href="/admin/notifi" class="text-white"> 
+                  Notification <span class="badge badge-light">{!! $attributes !!}</span>
                  <span class="sr-only">unread messages</span>
 		</a>
                 </button>
@@ -96,7 +97,7 @@
          @auth
         <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden absolute top-0 right-6 h-16 w-16">
-                <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
+                <button @click="open = ! open" class="mt-1/6 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition duration-150 ease-in-out">
                     <svg class="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
                         <path :class="{'hidden': open, 'inline-flex': ! open }" class="inline-flex" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
                         <path :class="{'hidden': ! open, 'inline-flex': open }" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -117,9 +118,7 @@
                     <div class="pt-4 pb-1 border-t border-gray-200">
                         <div class="flex items-center px-4">
                             <div class="flex-shrink-0">
-                                <svg class="h-10 w-10 fill-current text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                </svg>
+<img src="{{ Auth::user()->avatar}}" alt="avatar" class="rounded m-1" style="width:40px; height: 40px">
                             </div>
 
                             <div class="ml-3">

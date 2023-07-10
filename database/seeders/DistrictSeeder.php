@@ -24,6 +24,18 @@ class DistrictSeeder extends Seeder
              'cities_id' => 1
                     ]);
      District::create([   
+             'kelurahan' => 'Karombasan Sel.',
+             'cities_id' => 1
+                    ]);
+     District::create([   
+             'kelurahan' => 'South Karombasan',
+             'cities_id' => 1
+                    ]);
+     District::create([   
+             'kelurahan' => 'North Karombasan',
+             'cities_id' => 1
+                    ]);
+     District::create([   
              'kelurahan' => 'Karombasan Utara',
              'cities_id' => 1
                     ]);
@@ -52,6 +64,10 @@ class DistrictSeeder extends Seeder
              'cities_id' => 1
                     ]);
      District::create([   
+             'kelurahan' => 'Tj. Batu',
+             'cities_id' => 1
+                    ]);
+     District::create([   
              'kelurahan' => 'Mahakeret Timur',
              'cities_id' => 2
                     ]);
@@ -65,6 +81,10 @@ class DistrictSeeder extends Seeder
                     ]);
      District::create([   
              'kelurahan' => 'Wenang Utara',
+             'cities_id' => 2
+                    ]);
+     District::create([   
+             'kelurahan' => 'North Utara',
              'cities_id' => 2
                     ]);
      District::create([   
@@ -152,11 +172,23 @@ class DistrictSeeder extends Seeder
              'cities_id' => 4
                     ]);
      District::create([   
+             'kelurahan' => 'Paal IV',
+             'cities_id' => 4
+                    ]);
+     District::create([   
              'kelurahan' => 'Banjer',
              'cities_id' => 4
                     ]);
      District::create([   
              'kelurahan' => 'Tikala Ares',
+             'cities_id' => 4
+                    ]);
+     District::create([   
+             'kelurahan' => 'Ranomuut',
+             'cities_id' => 4
+                    ]);
+     District::create([   
+             'kelurahan' => 'Paal Dua',
              'cities_id' => 4
                     ]);
      District::create([   
@@ -188,7 +220,27 @@ class DistrictSeeder extends Seeder
              'cities_id' => 5
                     ]);
      District::create([   
+             'kelurahan' => 'Ternate Tj.',
+             'cities_id' => 5
+                    ]);
+     District::create([   
              'kelurahan' => 'Kombos Barat',
+             'cities_id' => 5
+                    ]);
+     District::create([   
+             'kelurahan' => 'Kombos Bar.',
+             'cities_id' => 5
+                    ]);
+     District::create([   
+             'kelurahan' => 'Kombos Tim.',
+             'cities_id' => 5
+                    ]);
+     District::create([   
+             'kelurahan' => 'East Kombos',
+             'cities_id' => 5
+                    ]);
+     District::create([   
+             'kelurahan' => 'West Kombos',
              'cities_id' => 5
                     ]);
      District::create([   
@@ -220,7 +272,19 @@ class DistrictSeeder extends Seeder
              'cities_id' => 6
                     ]);
      District::create([   
-             'kelurahan' => 'Titiwungen Utara',
+             'kelurahan' => 'Titiwungan Utara',
+             'cities_id' => 6
+                    ]);
+     District::create([   
+             'kelurahan' => 'Titiwungen Sel.',
+             'cities_id' => 6
+                    ]);
+     District::create([   
+             'kelurahan' => 'South Titiwungen',
+             'cities_id' => 6
+                    ]);
+     District::create([   
+             'kelurahan' => 'North Sario',
              'cities_id' => 6
                     ]);
      District::create([   
