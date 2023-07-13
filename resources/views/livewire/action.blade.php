@@ -36,7 +36,7 @@
                 <div class="card">
                     <div class="card-header">
                             <button id="buttonPermasalahan" type="button"class="btn btn-secondary active float-right mt-2" data-toggle="button" aria-pressed="false" autocomplete="off">+</button>
-                            <h5 class="card-title pt-3">Pengaturan Permasalahan</h5>
+                            <h5 class="card-title pt-3">Pengaturan Permasalahan dan Marker</h5>
                     </div>
                     <div wire:ignore id="problemcontent" class="card-body hiddenclass">
                         <form wire:submit.prevent="createproblems">
@@ -73,7 +73,7 @@
                                             <option value="{{$marker->id}}" data-img-src="{{ asset('storage/app/public/marker/'.$marker->filename)}}">{{$marker->id}}</option>
                                         @endforeach
                                         </select>  
-                                    <button wire:click="hapusproblem({{$problem->id}})" class="btn btn-danger float-right">Danger</button>
+                                    <button wire:click="hapusproblem({{$problem->id}})" class="btn btn-danger float-right">Delete</button>
                                     <button wire:click="updateProblem({{$problem->id}})" class="btn btn-info float-right">Save</button>
                                 </div>
                             </div>
@@ -83,7 +83,7 @@
                 </div>
             </div>
 
-            <div class="col-sm-6">
+            <div class="col-xxl-7">
                 <div class="card">
                     <div class="card-header">
                         <button id="buttonTipe" type="button"class="btn btn-secondary active float-right mt-2" data-toggle="button" aria-pressed="false" autocomplete="off">+</button>

@@ -34,7 +34,7 @@
                                                     <div class="col-sm-6 ">
                                                     <p class="h5">Deskripsi masalah</p>
                                                 </div>
-                                                <div class="col-sm-6 ">
+                                                <div class="col-sm-auto ">
                                                     <p>{{ $posts->des_mas }}</p>
                                                 </div>
                                         </div>
@@ -45,7 +45,7 @@
                                             <div class="col-sm-6 ">
                                                 <p class="h5">Deskripsi lokasi</p>
                                             </div>
-                                            <div class="col-sm-6 ">
+                                            <div class="col-sm-auto ">
                                                 <p>{{ $posts->des_lok }}</p>
                                             </div>
                                         </div>
@@ -56,7 +56,7 @@
                                             <div class="col-sm-6 ">
                                                 <p class="h5">Status</p>
                                             </div>
-                                            <div class="col-sm-6 ">
+                                            <div class="col-sm-auto ">
                                                 <p>{{ $posts->status->parameter }}</p>
                                             </div>
                                         </div>
@@ -67,7 +67,7 @@
                                             <div class="col-sm-6 ">
                                                 <p class="h5">Jenis drainase</p>
                                             </div>
-                                            <div class="col-sm-6 ">
+                                            <div class="col-sm-auto ">
                                                 <p>{{ $posts->type->tipe}}</p>
                                             </div>
                                         </div>
@@ -78,7 +78,7 @@
                                             <div class="col-sm-6 ">
                                                 <p class="h5">Klasifikasi masalah</p>
                                             </div>
-                                            <div class="col-sm-6 ">
+                                            <div class="col-sm-auto ">
                                                 <p>{{ $posts->problem->problem }}</p>
                                             </div>
                                         </div>
@@ -86,9 +86,9 @@
                                     <div class="modal-dialog col-md-10 col-lg-9 order-md-last m-1 mt-2">
                                     <div class="row">
                                             <div class="col-sm-6 ">
-                                                <p class="h5">Keterangan Admin</p>
+                                                <p class="h5">Keterangan admin</p>
                                             </div>
-                                            <div class="col-sm-6 ">
+                                            <div class="col-sm-auto ">
                                                 <p>{{ $posts->donetxt }}</p>
                                             </div>
 				    </div>

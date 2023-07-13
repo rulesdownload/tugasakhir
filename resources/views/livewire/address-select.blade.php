@@ -64,8 +64,8 @@
     @error('photos.*') <span class="error">{{ $message }}</span> @enderror
 
     <div class="form-group" >
-        <input type="" id="latitudehide" name="latitudehide" wire:model.lazy="lat" wire:model.lazy="lat"  >
-        <input type="" id="longitudehide" name="longitudehide" wire:model.lazy="lng" wire:model.lazy="lng" >
+        <input type="" class="hidden" id="latitudehide" name="latitudehide" wire:model.lazy="lat" wire:model.lazy="lat"  >
+        <input type="" class="hidden "id="longitudehide" name="longitudehide" wire:model.lazy="lng" wire:model.lazy="lng" >
     </div>
 
      <label for="status_id"></label>
@@ -89,7 +89,7 @@
           </div>
           <div class="modal-body">
             
-        <input id="pac-input" type="text" placeholder="cari lokasi"class="mb-1.5">
+        <input id="pac-input" type="text" placeholder="cari lokasi"class="mb-1.5 form-control">
         <div wire:ignore id="map" class="" style="width: 500px;height: 400px;float: left;position: relative;overflow: hidden;left: -23;right: 13px;left: -10;"></div>
 
         <input id="infolat"  type="text" name="infolat" class="hidden">

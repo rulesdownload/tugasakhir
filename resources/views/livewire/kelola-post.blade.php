@@ -35,9 +35,9 @@
 
                             <div class="row pb-3">
                                 <div class="col-sm-6 flex p-2 bd-highlight">
-                                    <p class="h6">Gambar</p>
+                                    
                 @foreach($photos as $photo)
-                <img width="62" height="22" src="{{ asset('storage/app/public/additional_photos/'.$photo->filename)}}" alt="post images" onclick="openModal();currentSlide({{$loop->iteration}})"class="img-fluid mr-2" wire:ignore>
+                <img width="62" height="22" src="{{ asset('storage/app/public/additional_photos/'.$photo->filename)}}" alt="post images" onclick="openModal();currentSlide({{$loop->iteration}})"class="img-fluid mr-2 img-fluid img-thumbnail" wire:ignore>
                 @endforeach
                                 </div>
                             </div> 
@@ -166,14 +166,14 @@
                 <form wire:submit.prevent="addProsesPhotos">
                 <div class="card">
                      <div class="card-header">
-                            <h5 class="card-title pt-3">Uploud Bukti Proses Perbaikan</h5>
+                            <h5 class="card-title pt-3">Upload Bukti Proses Perbaikan</h5>
                       </div>
                        <div class="p-2 bd-highlight">
                 <label class="col pl-0"> Masukan Foto </label>
                 <div wire:loading wire:target="photo">Uploading...</div>
                 <input type="file" wire:model="progresphotos" class="pb-3.5" multiple>
                 <div wire:loading wire:target="progresphotos">Uploading...</div>
-                <button type="submit" class="btn btn-sm btn-primary" >Submit</button>
+                <button type="submit" class="btn btn-sm btn-primary" >Upload Foto</button>
                {{ $prompt }}
                 </form>
                 <form wire:submit.prevent="createProgTxt">
@@ -182,7 +182,7 @@
                 <p class="h6">{{ $posts->progtxt }}</p>
                 <textarea class="form-control" wire:model.lazy="progtext" id="textAreaExample1" rows="4"></textarea>
                 </div>    
-                <button type="submit" class="btn btn-sm btn-primary" >Submit</button>
+                <button type="submit" class="btn btn-sm btn-primary" >Tambahkan</button>
                  </form>
                 </div>
 
@@ -204,7 +204,7 @@
                 <label class="col pl-0"> Masukan Foto </label>
                 <input type="file" wire:model="donephotos" class="pb-3.5" multiple>
                 <div wire:loading wire:target="donephotos">Uploading...</div>
-                <button type="submit" class="btn btn-sm btn-primary" >Submit</button>
+                <button type="submit" class="btn btn-sm btn-primary" >Upload Foto</button>
                 </form>
                 {{ $prompt }}
                 <div class=" pb-3.5 pt-1.5">
@@ -212,7 +212,7 @@
                 <label class="col pl-0"> Tambahkan Keterangan </label>
                 <p>{{ $posts->donetxt }}</p>
                 <textarea class="form-control"wire:model.lazy="donetext" id="textAreaExample2" rows="4"></textarea>
-                <button type="submit" class="btn btn-sm btn-primary" >Submit</button>
+                <button type="submit" class="btn btn-sm btn-primary" >Tambahkan</button>
                 </form>
 	        </div>
                 </div>
@@ -243,6 +243,7 @@
                             <div class=" card rounded border shadow p-3 m-3">
 
                             <div class="flex justify-start my-2">
+         <img src="{{$komentar->user->avatar}}" alt="avatar" class="rounded-circle m-1" style="width:40px; height: 40px">
                                 <p class="font-bold text-lg"> {{$komentar->user->name}}</p>
                                 <p class="mx-3 py-2 text-xs text-grey-500 font-semibold"> {{\Carbon\Carbon::parse($komentar->created_at)->diffForHumans()}} </p>
                             </div>

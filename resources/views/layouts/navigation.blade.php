@@ -81,7 +81,7 @@
 
        @if(Auth::check() && Auth::user()->level == "admin")	
 	<div class="mr-24 pt-3"  >
-                <button type="button" class="btn btn-primary" href="/notifi">
+                <button type="button" class="btn btn-primary mr-10" href="/notifi">
 		<a href="/admin/notifi" class="text-white"> 
                   Notification <span class="badge badge-light">{!! $attributes !!}</span>
                  <span class="sr-only">unread messages</span>
