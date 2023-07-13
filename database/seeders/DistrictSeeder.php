@@ -72,7 +72,23 @@ class DistrictSeeder extends Seeder
              'cities_id' => 2
                     ]);
      District::create([   
+             'kelurahan' => 'East Mahakeret',
+             'cities_id' => 2
+                    ]);
+     District::create([   
+             'kelurahan' => 'Mahakeret Tim.',
+             'cities_id' => 2
+                    ]);
+     District::create([   
              'kelurahan' => 'Mahakeret Barat',
+             'cities_id' => 2
+                    ]);
+     District::create([   
+             'kelurahan' => 'West Mahakeret',
+             'cities_id' => 2
+                    ]);
+     District::create([   
+             'kelurahan' => 'Mahakeret Bar.',
              'cities_id' => 2
                     ]);
      District::create([   
@@ -92,7 +108,7 @@ class DistrictSeeder extends Seeder
              'cities_id' => 2
                     ]);
      District::create([   
-             'kelurahan' => 'Pinesaan',
+             'kelurahan' => 'Pinaesaan',
              'cities_id' => 2
                     ]);
      District::create([   

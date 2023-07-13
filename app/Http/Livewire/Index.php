@@ -32,9 +32,11 @@ class Index extends Component
 
     public function loadPosts($uid)
     {
-        $reports = post_raw::all()->get($uid);
+	$this->uid = $uid - 1;
+	$reports = post_raw::all()->get($this->uid);
         $this->posts = $reports;
         $this->postId = $reports->id;
+
         $this->dispatchBrowserEvent('latitude-loaded', ['alat' => $this->latitude = $reports->lat]);
         $this->dispatchBrowserEvent('longitude-loaded', ['alng' => $this->longitude = $reports->lng]);
 

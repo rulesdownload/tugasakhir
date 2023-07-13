@@ -24,7 +24,7 @@
                             </div> 
 
                             </div>
-                        <div class="modal-dialog col-md-10 col-lg-9 order-md-last ">
+                        <div class="modal-dialog col-md-10 col-lg-9 ">
                                 
                                  @foreach ($posts as $post)
 
@@ -103,30 +103,28 @@
                                    </div>
                                 @endif
                            @endforeach     
-                                
-                                        
-             
-            <div class="col-10 text-center text-lg-start">
+                  </div>
+          <div class="mt-0">                                      
+            <div class="col-10 text-center text-lg-start mt-0">
                 <div class="col-sm-6 ">
                        <p>Foto Oleh admin</p>
                 </div>  
                 @foreach($donephotoshow as $photo)
-                <div class="col-6 col-md-4 pb-1 pl-sm-4 pr-md-4 pt-1"> 
+                <div class="col-6 col-md-4 pb-1 pl-sm-4 pr-md-4 pt-1 mt-0"> 
                 <img width="62" height="22" class="img-fluid img-thumbnail" src="{{ asset('storage/app/public/additional_photos/'.$photo->filename)}}" alt="post images" onclick="openModal2();currentSlide2({{$loop->iteration}})">
                 </div>
                 @endforeach 
             </div>
 
-            <div class="col-10 text-center text-lg-start">  
+            <div class="col-10 text-center text-lg-start mt-0">  
                 @foreach($progresphotoshow as $photo)
-                <div class="col-6 col-md-4 pb-1 pl-sm-4 pr-md-4 pt-1"> 
+                <div class="col-6 col-md-4 pb-1 pl-sm-4 pr-md-4 pt-1 mt-0"> 
                 <img width="62" height="22" class="img-fluid img-thumbnail" src="{{ asset('storage/app/public/additional_photos/'.$photo->filename)}}" alt="post images" onclick="openModal1();currentSlide1({{$loop->iteration}})">
                 </div>
 		@endforeach
             </div>
-		
+	</div>	
 	</div>
-                  </div>
                         <div class="modal-footer">
                     <button wire:click="confirmDestroy()" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     </div>

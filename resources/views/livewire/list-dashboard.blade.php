@@ -70,8 +70,8 @@
                       <tbody>
                         
                             @foreach($lists as $id => $list)
-                        <tr class="cursor-pointer"  wire:click.prevent="$emitTo('index', 'open', {{ $id }})">
-                          <div wire:key="{{ $id }}">
+                        <tr class="cursor-pointer"  wire:click.prevent="$emitTo('index', 'open', {{ $list->id }})">
+                          <div wire:key="{{ $list->id }}">
                           <th scope="row">{{ $list->id }}</th>
                           <td>{{ $list->des_mas }}</td>
                           <td>{{ $list->city->kecamatan }}</td>
